@@ -1,0 +1,104 @@
+<div>
+  <div class="main container landing">
+    <div class="helpbox" ng-class="{showHelp : showHelp}">
+      <h3>Welcome to Ledgerd</h3>
+      <p>
+        Ledgerd基于Ripple开源项目，致力于为中文地区用户提供更友好的版本，促进Ripple协议在中文地区的发展。
+        Ripple使用区块链技术公开交易总账，使得任何人无法伪造交易，通过此网络机构可以发行货币、积分、债权、股权等IOUs。
+        通过一些类似银行的网关节点为这些有价物提供流动性，使得各类货币、积分等可以瞬时、免费、自由地流转。
+        <a href="https://github.com/ledgerd" target="_blank">项目源码</a>.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-md-6 stats">
+        <h5>
+          全网统计
+          <select id="valueCurrency" class="valueCurrencySelect"></select>
+          <span class="valueRateDisplay" ng-bind="valueRateDisplay"></span>
+        </h5>
+        <ul>
+          <li>
+            <label>XRP总市值:</label>
+            <div class="stat">
+              <span ng-show="valueRate" ng-bind="xrpCapitalization"></span>
+              <img  ng-hide="xrpCapitalization" src="assets/images/rippleThrobber.png" class="loader"/>
+            </div>
+            <div class="details"></div>
+          </li>
+          <li>
+            <label>流通量:</label>
+            <div class="stat">
+              <span ng-show="valueRate" ng-bind="issuedValue"></span>
+              <img  ng-hide="issuedValue" src="assets/images/rippleThrobber.png" class="loader"/>
+            </div>
+            <div class="details">
+              <div ng-show="issuedValue && issuedValue != ' '" ng-click="metricDetail='issuedValue'" ng-class="{selected : metricDetail == 'issuedValue' }">
+                详图
+                <img src="assets/images/triangle.svg"/>
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>24小时支付量:</label>
+            <div class="stat">
+              <span ng-show="valueRate" ng-bind="paymentVolume"></span>
+              <img  ng-hide="paymentVolume" src="assets/images/rippleThrobber.png" class="loader"/>
+            </div>
+            <div class="details">
+              <div ng-show="paymentVolume && paymentVolume != ' '" ng-click="metricDetail='paymentVolume'" ng-class="{selected : metricDetail == 'paymentVolume' }">
+                详图
+                <img src="assets/images/triangle.svg"/>
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>24小时交易量:</label>
+            <div class="stat">
+              <span ng-show="valueRate" ng-bind="tradeVolume"></span>
+              <img  ng-hide="tradeVolume" src="assets/images/rippleThrobber.png" class="loader"/>
+            </div>
+            <div class="details">
+              <div ng-show="tradeVolume && tradeVolume != ' '" ng-click="metricDetail='tradeVolume'" ng-class="{selected : metricDetail == 'tradeVolume' }">
+                详图
+                <img src="assets/images/triangle.svg"/>
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>XRP总量:</label>
+            <div class="stat">
+              <span ng-bind="totalCoins"></span>
+              <img ng-hide="totalCoins" src="assets/images/rippleThrobber.png" class="loader"/>
+            </div>
+            <div class="details"></div>
+          </li>
+          <li>
+            <label>分类账 #:</label>
+            <div class="stat">
+              <span ng-bind="ledgerIndex"></span>
+              <img ng-hide="ledgerIndex" src="assets/images/rippleThrobber.png" class="loader"/>
+            </div>
+            <div class="details"></div>
+          </li>
+          <li>
+            <label># 账户数:</label>
+            <div class="stat">
+              <span ng-bind="totalAccounts"></span>
+              <img ng-hide="totalAccounts" src="assets/images/rippleThrobber.png" class="loader"/>
+            </div>
+            <div class="details"></div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <span ng-bind="metricDetailTitle"></span>
+          <a class="explore" href="#/trade-volume" ng-show="metricDetail === 'tradeVolume'">Explore</a>
+        </h5>
+        <div id="metricDetail"></div>
+      </div>
+    </div>
+    <h5>热门网关</h5>
+    <div id="topMarkets"></div>
+  </div>
+</div>
